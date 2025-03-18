@@ -78,7 +78,7 @@ if torch.cuda.is_available():
     # Training loss tracking lists
     step1_loss_list = list()
     step2_loss_list = list()
-    # Placeholder variables for content and style losses
+    # Placeholder variables for step1_loss and step2_loss 
     step1_loss = None
     step2_loss = None
     # Define optimizers for each model component
