@@ -24,7 +24,7 @@ DDDG
 
 ├── construct_loader.py # Dataloader builder
 
-├── module/ # Loss functions and modules
+├── module.py # Loss functions and modules
 
 ├── main.py # Training and evaluation
 
