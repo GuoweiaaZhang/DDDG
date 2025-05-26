@@ -13,18 +13,17 @@ We recommend using `conda` to manage the environment for consistent dependencies
 
 # 📁 Project Structure
 DDDG
-
-├── module/ # Loss functions and modules
-
-├── load_data.py # Data loading and FFT
-
 ├── x_600.mat #  Quick-run example dataset (600 RPM)
 
 ├── x_800.mat #  Quick-run example dataset (800 RPM)
 
 ├── x_1000.mat #  Quick-run example dataset (1000 RPM)
 
+├── load_data.py # Data loading and FFT
+
 ├── construct_loader.py # Dataloader builder
+
+├── module/ # Loss functions and modules
 
 ├── main.py # Training and evaluation
 
