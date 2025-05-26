@@ -1,2 +1,52 @@
-# DDDG
-Code for Dual Disentanglement Domain Generalization Method for Rotating Machinery Fault Diagnosis is publicly available, just run the main file.
+# ⚙️ Dual Disentanglement Domain Generalization (DDDG)
+
+🛠️ This repository provides the official implementation of the paper  
+**"Dual Disentanglement Domain Generalization Method for Rotating Machinery Fault Diagnosis"**. [Paper Link](https://www.sciencedirect.com/science/article/pii/S088832702500161X) 
+
+It includes the network architecture, loss functions, FFT-based data processing in intelligent fault diagnosis tasks.
+
+# 🧪 Environment Setup
+This project is developed and tested under Python 3.9 with PyTorch ≥ 1.12.
+
+We recommend using `conda` to manage the environment for consistent dependencies.
+
+# 📁 Project Structure
+DDDG
+
+├── module/ # Loss functions and modules
+
+├── load_data.py # Data loading and FFT
+
+├──x_600.mat #  Quick-run example dataset (600 RPM)
+
+├──x_800.mat #  Quick-run example dataset (800 RPM)
+
+├──x_1000.mat #  Quick-run example dataset (1000 RPM)
+
+├── construct_loader.py # Dataloader builder
+
+├── main.py # Training and evaluation
+
+└── README.md
+
+# 🚀 Quick Start
+
+We provide a sample dataset and a ready-to-run script so that users can quickly reproduce the results.
+
+1. **Preparing data**
+- Option 1: To help users get started quickly, we provide **three pre-segmented vibration signal samples** from the JNU dataset:
+
+- `x_600.mat`
+- `─x_800.mat`
+- `x_1000.mat`
+
+These `.mat` files are already uploaded to this repository root and can be used directly without any preprocessing. They are representative of different operating conditions and fault types.
+- Option 2: Download the data manually from: [📥 External download link](https://github.com/CHAOZHAO-1/Machine-Fault-Dataset)
+
+2. **Place the dataset in the `./data/` directory** (create this folder if it doesn't exist).
+
+3. **Clone this repository**.
+   
+4. **Run the** main.py **file to start training and evaluation**.
+
+
