@@ -17,7 +17,9 @@ DDDG
 ├── x_600.mat #  Quick-run example dataset (600 RPM)
 
 ├── x_800.mat #  Quick-run example dataset (800 RPM)
+
 ├── x_1000.mat #  Quick-run example dataset (1000 RPM)
+
 ├── load_data.py # Data loading and FFT
 
 ├── construct_loader.py # Dataloader builder
