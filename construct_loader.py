@@ -60,7 +60,7 @@ def construct_loader(
     
     elif len(data) == 3:
         loaders = []
-        for i in range(len(data[0])):  # 修正了原代码中的range(data)错误
+        for i in range(len(data[0])):  
             dataset = Data.TensorDataset(data[0][i], data[1][i], data[2][i])
             loader = Data.DataLoader(
                 dataset=dataset,
