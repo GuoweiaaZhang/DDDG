@@ -37,7 +37,7 @@ We provide a sample dataset and a ready-to-run script so that users can quickly 
 - Option 1: To help users get started quickly, we provide **three pre-segmented vibration signal samples** from the JNU dataset:
 
 - `x_600.mat`
-- `─x_800.mat`
+- `x_800.mat`
 - `x_1000.mat`
 
 These `.mat` files are already uploaded to this repository root and can be used directly without any preprocessing. They are representative of different operating conditions and fault types.
