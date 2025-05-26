@@ -49,7 +49,7 @@ These `.mat` files are already uploaded to this repository root and can be used 
 
 3. **Clone this repository**.
    
-4. **Run the** main.py **file to start training and evaluation**.
+4. **Run the** `main.py` **file to start training and evaluation**.
 
 # 📄 Citation
 
