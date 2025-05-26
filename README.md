@@ -50,4 +50,18 @@ These `.mat` files are already uploaded to this repository root and can be used 
    
 4. **Run the** main.py **file to start training and evaluation**.
 
+# 📄 Citation
+
+If you use this code in your research or find it helpful, please consider citing our work:
+
+```bibtex
+@article{zhang2025dual,
+  title={Dual disentanglement domain generalization method for rotating Machinery fault diagnosis},
+  author={Zhang, Guowei and Kong, Xianguang and Ma, Hongbo and Wang, Qibin and Du, Jingli and Wang, Jinrui},
+  journal={Mechanical Systems and Signal Processing},
+  volume={228},
+  pages={112460},
+  year={2025},
+  publisher={Elsevier}
+}
 
