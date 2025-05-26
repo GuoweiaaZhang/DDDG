@@ -52,7 +52,7 @@ These `.mat` files are already uploaded to this repository root and can be used 
 
 # 📄 Citation
 
-If you use this code in your research or find it helpful, please consider citing our work:
+You're warmly welcome to cite our work if you find it useful — we truly appreciate it!
 
 ```bibtex
 @article{zhang2025dual,
