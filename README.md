@@ -35,7 +35,7 @@ DDDG
 We provide a sample dataset and a ready-to-run script so that users can quickly reproduce the results.
 
 1. **Preparing data**
-- Option 1: To help users get started quickly, we provide **three pre-segmented vibration signal samples** from the JNU dataset:
+-Option 1: To help users get started quickly, we provide three pre-segmented sample sets of vibration signals from the JNU dataset, corresponding to three different operating conditions:
 
 - `x_600.mat`
 - `x_800.mat`
