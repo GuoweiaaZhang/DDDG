@@ -13,6 +13,7 @@ We recommend using `conda` to manage the environment for consistent dependencies
 
 # 📁 Project Structure
 DDDG
+
 ├── x_600.mat #  Quick-run example dataset (600 RPM)
 
 ├── x_800.mat #  Quick-run example dataset (800 RPM)
