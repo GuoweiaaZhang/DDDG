@@ -17,7 +17,7 @@ from typing import Tuple, Dict, List, Optional
 
 
 class CNN(nn.Module):
-    ""Convolutional neural network models for feature extraction
+     """CNN models for feature extraction
 
     Args:
         n_classes (int): Number of classification categories
