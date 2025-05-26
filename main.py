@@ -20,7 +20,7 @@ tau = 0.01
 T1 = 1
 BatchSize = 40
 # ===================================== Data loading =====================================
-# JNU 数据路径  JNU data format is sample size * 1 * 2049, The 2049 dimension contains 2048 dimensions of sample points and 1 dimension of labels.
+# JNU data path  JNU data format is sample size * 1 * 2049, The 2049 dimension contains 2048 dimensions of sample points and 1 dimension of labels.
 x_600_path = r'E:\Code\DDDG/DATA/x_600.mat'
 x_train_x_600,  x_train_y_600,  x_test_x_600,  x_test_y_600 = load_data(x_600_path, 'x_600', 4, 200, [])  # Data segmentation and data fft transformation
 
