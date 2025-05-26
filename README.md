@@ -4,7 +4,7 @@
 
 **"[MSSP] Dual Disentanglement Domain Generalization Method for Rotating Machinery Fault Diagnosis"**. [Paper Link](https://www.sciencedirect.com/science/article/pii/S088832702500161X) 
 
-It includes the network architecture, loss functions, Training and testing process in intelligent fault diagnosis tasks.
+It includes the network architecture, loss functions, training and testing process in intelligent fault diagnosis tasks.
 
 # 🧪 Environment Setup
 This project is developed and tested under Python 3.9 with PyTorch ≥ 1.12.
