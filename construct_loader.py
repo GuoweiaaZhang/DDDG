@@ -8,18 +8,16 @@ def construct_loader(
     uncom: bool = False
 ) -> Union[Data.DataLoader, List[Data.DataLoader]]:
     """
-    构建PyTorch数据加载器。
+    Building a PyTorch Data Loader。
 
-    参数:
-        data: 包含张量的列表或元组
-        batch_size: 每个批次的样本数
-        uncom: 是否使用特殊的未压缩数据格式，默认为False
+    Parameters.
+        data: list or tuple containing the tensor
+        batch_size: number of samples in each batch
+        uncom: whether to use special uncompressed data format, default is False
 
-    返回:
-        单个DataLoader或DataLoader列表
+    Returns.
+        A single DataLoader or a list of DataLoaders.
     """
-    
-    # 处理未压缩数据的特殊情况
     if uncom:
         loaders = []
         for i in range(len(data[0])):
@@ -32,7 +30,6 @@ def construct_loader(
             loaders.append(loader)
         return loaders
 
-    # 根据输入数据的维度构建不同的数据加载器
     if len(data) == 2:
         dataset = Data.TensorDataset(data[0], data[1])
         return Data.DataLoader(
@@ -43,7 +40,7 @@ def construct_loader(
         )
     
     elif len(data) == 6:
-        dataset = Data.TensorDataset(*data)  # 使用解包操作符简化代码
+        dataset = Data.TensorDataset(*data) 
         return Data.DataLoader(
             dataset=dataset,
             batch_size=batch_size,
