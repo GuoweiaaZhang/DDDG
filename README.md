@@ -1,7 +1,7 @@
 # ⚙️ Dual Disentanglement Domain Generalization (DDDG)
 
 🛠️ This repository provides the official implementation of the paper  
-**"Dual Disentanglement Domain Generalization Method for Rotating Machinery Fault Diagnosis"**. [Paper Link](https://www.sciencedirect.com/science/article/pii/S088832702500161X) 
+**"[MSSP] Dual Disentanglement Domain Generalization Method for Rotating Machinery Fault Diagnosis"**. [Paper Link](https://www.sciencedirect.com/science/article/pii/S088832702500161X) 
 
 It includes the network architecture, loss functions, FFT-based data processing in intelligent fault diagnosis tasks.
 
