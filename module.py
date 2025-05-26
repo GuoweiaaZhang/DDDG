@@ -1,15 +1,14 @@
 """
-特征处理模型集合 (Feature Processing Models)
+This module implements a collection of deep learning models for feature processing:
 
-本模块实现了一系列用于特征处理的深度学习模型：
-1. CNN: 用于特征提取的卷积神经网络
-2. Classifier系列: 用于特征分类的多个分类器模型
-3. RandMix: 用于数据增强的随机混合模块
-4. AdaIN1d: 用于特征归一化的一维自适应实例归一化层
-5. Masker: 用于类别特征掩码的模块
-6. 其他工具函数: 包括对比学习损失(CLUB)等
-
+1. CNN: A convolutional neural network for feature extraction.
+2. Classifier series: Multiple classifiers designed for feature classification.
+3. RandMix: A random mixing module for data augmentation.
+4. AdaIN1d: A 1D Adaptive Instance Normalization layer for feature normalization.
+5. Masker: A module for category-specific feature masking.
+6. Other utility functions: Including contrastive learning losses (e.g., CLUB) and more.
 """
+
 
 import torch
 from torch import nn
@@ -18,10 +17,10 @@ from typing import Tuple, Dict, List, Optional
 
 
 class CNN(nn.Module):
-    """卷积神经网络模型，用于特征提取
+    ""Convolutional neural network models for feature extraction
 
     Args:
-        n_classes (int): 分类类别数
+        n_classes (int): Number of classification categories
 
     """
 
@@ -89,8 +88,8 @@ class CNN(nn.Module):
         """Forward propagation layer 1, returning domain invariant and domain specific features
 
         Args:
-            x: 输入张量
-            tau: 温度参数
+            x: input tensor
+            tau: Temperature parameters
 
         Returns:
             f_invariant: domain invariant features
@@ -106,11 +105,11 @@ class CNN(nn.Module):
         return f_invariant, f_specific
 
     def forward(self, x: torch.Tensor, tau: float) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
-        """模型的前向传播
+        """Forward propagation of models
 
         Args:
-            x: 输入张量
-            tau: 温度参数
+            x: input tensor
+            tau: Temperature parameters
 
         Returns:
             features
@@ -134,10 +133,10 @@ class CNN(nn.Module):
         return features, channel_weights, content_features, style_features
 
 class Classifier(nn.Module):
-    """基础分类器模型
+    """basic classifier model
 
     Args:
-        n_classes: 分类类别数
+        n_classes: Number of classification categories
     """
 
     def __init__(self, n_classes: int):
@@ -260,11 +259,11 @@ class Masker(nn.Module):
 
 
 class AdaIN1d(nn.Module):
-    """一维自适应实例归一化层
+    """One-dimensional adaptive instance normalization layer
 
     Args:
-        style_dim: 风格维度
-        num_features: 特征数量
+        style_dim: Style Dimension
+        num_features: Number of features
     """
 
     def __init__(self, style_dim: int, num_features: int):
@@ -279,12 +278,11 @@ class AdaIN1d(nn.Module):
         normalized = self.norm(x)
         return (1 + gamma) * normalized + beta
 
-
 class RandMix(nn.Module):
-    """随机混合增强模块
+    """RandMix Module
 
     Args:
-        noise_lv: 噪声水平
+        noise_lv: noise level
     """
 
     def __init__(self, noise_lv: float):
@@ -292,12 +290,12 @@ class RandMix(nn.Module):
         self.zdim = 3
         self.noise_lv = noise_lv
 
-        # AdaIN层
+        # AdaIN layer
         self.adain_layers = nn.ModuleList([
             AdaIN1d(self.zdim, 1) for _ in range(4)
         ])
 
-        # 空间变换层
+        # space transformation layer
         self.spatial_transforms = nn.ModuleList([
             nn.ModuleDict({
                 'down': nn.Conv1d(1, 1, 2 * i + 3),
@@ -309,18 +307,16 @@ class RandMix(nn.Module):
         # self.random_weights = torch.randn(5)            # Random weighting
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """前向传播
 
         Args:
-            x: 输入张量
+            x: input tensor 
 
         Returns:
-            mixed: 混合后的特征
+            mixed: Mixed features
         """
         original = x
         x = x + torch.randn_like(x) * self.noise_lv * 0.001
 
-        # 空间变换
         spatial_features = []
         for i, (transform, adain) in enumerate(zip(self.spatial_transforms, self.adain_layers)):
             down = transform['down'](x)
@@ -328,7 +324,6 @@ class RandMix(nn.Module):
             transformed = adain(down, style)
             spatial_features.append(torch.relu(transform['up'](transformed)))
 
-        # 特征混合
         mixed_features = sum(w * f for w, f in zip(self.mixing_weights[:4], spatial_features))
         original_weighted = self.mixing_weights[4] * original
         mixed = mixed_features + original_weighted
@@ -337,29 +332,29 @@ class RandMix(nn.Module):
 
 
 def loglikeli(mu: torch.Tensor, logvar: torch.Tensor, y_samples: torch.Tensor) -> torch.Tensor:
-    """计算对数似然
+    """Compute the log-likelihood
 
     Args:
-        mu: 均值
-        logvar: 对数方差
-        y_samples: 样本
+        mu: average values
+        logvar: logarithmic variance
+        y_samples: samples
 
     Returns:
-        log_likelihood: 对数似然值
+        log_likelihood
     """
     return (-(mu - y_samples) ** 2 / logvar.exp() - logvar).mean()
 
 
 def reparametrize(mu: torch.Tensor, logvar: torch.Tensor, factor: float = 0.2) -> torch.Tensor:
-    """重参数化技巧
+    """reparameterization technique
 
     Args:
-        mu: 均值
-        logvar: 对数方差
-        factor: 缩放因子
+        mu: average values
+        logvar: logarithmic variance
+        factor: scaling factor
 
     Returns:
-        重参数化后的样本
+        Samples after reparameterization
     """
     std = logvar.div(2).exp()
     eps = std.data.new(std.size()).normal_()
@@ -367,15 +362,15 @@ def reparametrize(mu: torch.Tensor, logvar: torch.Tensor, factor: float = 0.2) -
 
 
 def club(mu: torch.Tensor, logvar: torch.Tensor, y_samples: torch.Tensor) -> torch.Tensor:
-    """计算CLUB (Contrastive Log-ratio Upper Bound)
+    """CLUB (Contrastive Log-ratio Upper Bound)
 
     Args:
-        mu: 均值
-        logvar: 对数方差
-        y_samples: 样本
+        mu: average values
+        logvar: logarithmic variance
+        y_samples: samples
 
     Returns:
-        upper_bound: CLUB上界
+        upper_bound: CLUB
     """
     sample_size = y_samples.shape[0]
     random_index = torch.randperm(sample_size).long()
