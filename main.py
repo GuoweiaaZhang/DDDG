@@ -10,7 +10,7 @@ from module import Classifier, Classifier_ad, Classifier_all, CNN, Projector, Ma
 from construct_loader import construct_loader
 from load_data import load_data
 import torch.nn.functional as F
-# =================== 参数设置 ===================
+# =================== Parameter setting ===================
 epoch = 100
 lr = 0.0005
 weight_decay = 0.00005
